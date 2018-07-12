@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MenuProvider } from '../providers/menu/menu';
 
 @Component({
   templateUrl: 'app.html'
@@ -11,31 +12,45 @@ export class MyApp {
 
   rootPage: any = 'HomePage';
 
-  pages: Array<{ title: string, component: any }>;
+  pages: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  // Selected Side Menu
+  selectedMenu: any;
+
+  constructor(public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public menuProvider: MenuProvider,
+    public menuCtrl: MenuController) {
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: 'HomePage' },
-      { title: 'Topics', component: 'TopicsPage' }
-    ];
-
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.getSideMenuData();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
 
-  openPage(page) {
+  getSideMenuData() {
+    this.pages = this.menuProvider.getSideMenus();
+  }
+
+  openPage(page, index) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if (page.component) {
+      this.nav.setRoot(page.component);
+      this.menuCtrl.close();
+    } else {
+      if (this.selectedMenu) {
+        this.selectedMenu = 0;
+      } else {
+        this.selectedMenu = index;
+      }
+    }
   }
 }
