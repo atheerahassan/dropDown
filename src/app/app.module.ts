@@ -7,6 +7,9 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MenuProvider } from '../providers/menu/menu';
+import { DataServiceProvider } from '../providers/data-service/data-service';
+
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,8 @@ import { MenuProvider } from '../providers/menu/menu';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -26,7 +30,8 @@ import { MenuProvider } from '../providers/menu/menu';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     HttpClient,
-    MenuProvider
+    MenuProvider,
+    DataServiceProvider
   ]
 })
 export class AppModule { }
