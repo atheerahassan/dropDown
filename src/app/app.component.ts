@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,6 +20,8 @@ export class MyApp {
   selectedMenu: any;
   showLevel1:any;
   showLevel2:any;
+  page=[];
+  subs=[];
 
   constructor(public platform: Platform,
     public statusBar: StatusBar,
@@ -27,13 +29,44 @@ export class MyApp {
     public menuProvider: MenuProvider,
     public menuCtrl: MenuController,
     public dataservice:DataServiceProvider) {
-    this.initializeApp();
 
-    this.dataservice.getMenus()
-    .subscribe((response)=> {
-        this.pages = response;
-        console.log(this.pages);
-    });
+      
+  this.page.push({
+  category:'Business Names', 
+  })
+
+  this.subs.push({
+    subcategory:'Business Name A',
+    })
+  this.subs.push({
+    subcategory:'Business Name B',
+    })
+  this.subs.push({
+    subcategory:'Business Name C',
+    })
+        
+      
+    
+  
+  
+  
+  
+  this.initializeApp();
+
+    // this.dataservice.getMenus()
+    // .subscribe((response)=> {
+    //     this.pages = response;
+    //     console.log(this.pages);
+    // });
+
+    
+    // this.dataservice.getMenus()
+    // .subscribe((response)=> {
+    //     this.pages = response;
+    //     console.log(this.pages);
+    // });
+    
+
 
   }
 
@@ -46,6 +79,7 @@ export class MyApp {
       this.splashScreen.hide();
     });
   }
+
 
   getSideMenuData() {
     this.pages = this.menuProvider.getSideMenus();
@@ -72,6 +106,9 @@ export class MyApp {
     } else {
       this.showLevel1 = idx;
     }
+
+    
+
   };
   
   toggleLevel2(idx) {

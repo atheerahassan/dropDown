@@ -8,26 +8,43 @@
   <ion-content>
 
       <ion-list>
-          <ion-item *ngFor="let p of pages; let i=index" text-wrap (click)="toggleLevel1('idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}">
-            <h4>
-              {{p.category}}
+          <ion-card *ngFor="let p of page; let i=index" text-wrap (click)="toggleLevel1('idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}">          
+              <button ion-item detail-push>
+                  <p style="margin-left: 4%; color: black; font-size: 16px; ">Business Names</p>
+                </button>          
+          <!-- <h4>
+              
+                 <ion-col col-7>
+                 {{p.category}}
+                 <ion-col col-7.2>
               <ion-icon color="success" item-right [name]="isLevel1Shown('idx'+i) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
-            </h4>
+            </ion-col>
+          </ion-col>
+          
+            </h4>  -->
+          
             <ion-list *ngIf="isLevel1Shown('idx'+i)">
-              <ion-item *ngFor="let s of p.subs; let i2=index" text-wrap (click)="toggleLevel2('idx'+i+'idx'+i2)" [ngClass]="{active: isLevel2Shown('idx'+i+'idx'+i2)}">
+              <ion-item *ngFor="let s of subs; let i2=index" text-wrap (click)="toggleLevel2('idx'+i+'idx'+i2)" [ngClass]="{active: isLevel2Shown('idx'+i+'idx'+i2)}">
                 <h4>
                   {{s.subcategory}}
-                  <ion-icon color="success" item-right [name]="isLevel2Shown('idx'+i+'idx'+i2) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+                  <!-- <ion-icon color="success" item-right [name]="isLevel2Shown('idx'+i+'idx'+i2) ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon> -->
+                  <!-- <ion-icon color="success"></ion-icon> -->
                 </h4>
-                <ion-list *ngIf="isLevel2Shown('idx'+i+'idx'+i2)">
+                <!-- <ion-list *ngIf="isLevel2Shown('idx'+i+'idx'+i2)">
                   <ion-item *ngFor="let m of s.manufactures" text-wrap>
                     {{m.manufacture}}
                   </ion-item>
-                </ion-list>
+                </ion-list> -->
               </ion-item>
             </ion-list>
-          </ion-item>
+          </ion-card>
         </ion-list>
+
+
+
+      
+
+
 
     <!-- <ion-list>
       <ion-item ion-item *ngFor="let p of pages;  let i=index" (click)="openPage(p, i);">
@@ -50,6 +67,9 @@
       </ion-item>
 
     </ion-list> -->
+
+
+
   </ion-content>
 
 </ion-menu>

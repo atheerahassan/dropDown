@@ -18,7 +18,27 @@ export class DataServiceProvider {
     console.log('Hello DataServiceProvider Provider');
   }
   getMenus(){
-    return this.http.get('assets/data/menus.json')
-     .map(res=>res);
+    //return this.http.get('assets/data/menus.json') 
+    // return this.http.get('assets/data/menus.json') 
+    // .map(res=>res);
+    // return [{
+      
+      
+    //   title: 'Business Names',
+    //   subPages: [{
+    //     title: 'Business Name A',
+
+    //   }, {
+    //     title: 'Business Name B',
+
+    //   },{
+    //     title: 'Business Name C',
+    //   }]
+    // }];
+    
   }
+    
 }
+
+  
+
