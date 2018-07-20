@@ -7,19 +7,17 @@ export class MenuProvider {
   constructor(public http: HttpClient) { }
 
   getSideMenus() {
-    return [
-    {
+    return [{
+    
       title: 'Business Names',
       subPages: [{
         title: 'Business Name A',
+
       }, {
         title: 'Business Name B',
-      }, {
-        
-          title: 'Business Name C',
-      },
-      {
-        title: 'Business Name D',
+
+      },{
+        title: 'Business Name C',
       }]
     }];
   }
